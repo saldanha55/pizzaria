@@ -1,0 +1,154 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 15 de jul de 2024, 13:46:54
+    Author     : 14830919612
+*/
+body{
+    margin: 0;
+}
+
+div#interface{
+    width: 100%;
+    margin: 0 auto;
+}
+
+nav ul{
+    list-style-type: none;
+    background-color: #333;
+    padding: 10px; /*fica aqui E no 'a' para previnir erros de espacidade com o hover.*/
+    text-align: center;
+    margin: 0;
+}
+
+nav ul li{
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 10px 11px 10px; /*fica aqui E no 'ul' para previnir erros de espacidade com o hover.*/
+    text-transform: uppercase;
+}
+
+nav ul li a:hover{
+    /*color: #ccc;*/
+    background-color: blue;
+    transition: all 0.5s;
+}
+
+.tit{
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.5s;
+}
+
+.cadastro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabela{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*margin-top: 20px;*/
+}
+
+.granTable{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.espaco{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+thead{
+    background-color: blue;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+th{
+    padding: 5px 10px 5px 10px;
+}
+
+.td{
+    padding: 5px 10px 5px 10px;
+}
+
+tbody{
+    color: #fff;
+    text-align: center;
+}
+
+.tbody:nth-child(odd) {
+    background-color: #000;
+}
+.tbody:nth-child(even) {
+    background-color: #333;
+}
+
+.tbody:hover{
+    background-color: white;
+    color: #000;
+    transition: all 0.5s;
+}
+
+.form{
+    display: block;
+}
+
+.butaoSalvar, .butaoCancelar, .butaoEditar, .butaoExcluir{
+    color: white;
+    border: 0;
+    font-weight: bold;
+    border-radius: 15%;
+    padding: 5px 10px 5px 10px;
+}
+
+.butaoSalvar{
+    background-color: #008000;
+}
+
+.butaoCancelar{
+    background-color: red;
+}
+
+.butaoEditar{
+    background-color: orange;
+}
+
+.butaoExcluir{
+    background-color: blue;
+}
+
+.butaoSalvar:hover{
+    background-color: greenyellow;
+    transition: all 0.5s;
+}
+
+.butaoCancelar:hover{
+    background-color: salmon;
+    transition: all 0.5s;
+}
+
+.butaoEditar:hover{
+    background-color: red;
+    transition: all 0.5s;
+}
+
+.butaoExcluir:hover{
+    background-color: blueviolet;
+    transition: all 0.5s;
+}
