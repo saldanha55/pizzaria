@@ -70,14 +70,11 @@
                         <c:forEach var="pizza" items="${pizzas}">   
                             <option value="${pizza.codPizza}">${pizza.nome} - R$ ${pizza.precoBase}</option>
                         </c:forEach>
-                        
-                    </select>
-                    <select name="bebidaVenda" class="form" multiple="multiple" style="margin: 20px; height: 150px; width: -webkit-fill-available;">
-                        <c:forEach var="bebida" items="${bebidas}">   
+                            <c:forEach var="bebida" items="${bebidas}">   
                             <option value="${bebida.codigoBebida}">${bebida.nomeBebida} - R$ ${bebida.precoBebida}</option>
-                    </c:forEach>
-                        
+                             </c:forEach>    
                     </select>
+                    
                     
                 </div>
 
