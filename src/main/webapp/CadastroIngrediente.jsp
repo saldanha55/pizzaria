@@ -4,7 +4,6 @@
     Author     : 14830919612
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="Menu.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="header.jsp" %>
+
         <h1 class="tit">Cadastro Ingrediente</h1>
         <div class="cadastro">
             
@@ -28,7 +29,7 @@
                     <input type="text" name="quantidadeEstoqueIngrediente" value="${quantidadeEstoqueIngrediente}" size="40" required class="form"/>
                 </p>
                 <input type="hidden" name="opcao" value="${opcao}">
-                <input type="hidden" name="codigoIngrediente" value="${codigoIngrediente}">
+                <input type="hidden" name="codIngrediente" value="${codIngrediente}">
                 
                     <table border="0">
                         <tr>
@@ -65,13 +66,13 @@
                 <c:forEach var="ingrediente" items="${ingredientes}">
                     <tbody class="tbody">
                         <tr>
-                            <td class="td">${ingrediente.codigoIngrediente}</td>
+                            <td class="td">${ingrediente.codIngrediente}</td>
                             <td class="td">${ingrediente.nomeIngrediente}</td>
                             <td class="td">${ingrediente.precoIngrediente}</td>
                             <td class="td">${ingrediente.quantidadeEstoqueIngrediente}</td>
                             <td class="td">
                                 <form name="cadastro" action="${pageContext.request.contextPath}${URL_BASE}/IngredienteControlador">
-                                    <input type="hidden" name="codigoIngrediente" value="${ingrediente.codigoIngrediente}">
+                                    <input type="hidden" name="codIngrediente" value="${ingrediente.codIngrediente}">
                                     <input type="hidden" name="nomeIngrediente" value="${ingrediente.nomeIngrediente}">
                                     <input type="hidden" name="precoIngrediente" value="${ingrediente.precoIngrediente}"> 
                                     <input type="hidden" name="quantidadeEstoqueIngrediente" value="${ingrediente.quantidadeEstoqueIngrediente}"> 
@@ -81,7 +82,7 @@
                             </td>
                             <td class="td">
                                 <form name="cadastro" action="${pageContext.request.contextPath}${URL_BASE}/IngredienteControlador">
-                                    <input type="hidden" name="codigoIngrediente" value="${ingrediente.codigoIngrediente}">
+                                    <input type="hidden" name="codIngrediente" value="${ingrediente.codIngrediente}">
                                     <input type="hidden" name="nomeIngrediente" value="${ingrediente.nomeIngrediente}">
                                     <input type="hidden" name="precoIngrediente" value="${ingrediente.precoIngrediente}"> 
                                     <input type="hidden" name="quantidadeEstoqueIngrediente" value="${ingrediente.quantidadeEstoqueIngrediente}"> 

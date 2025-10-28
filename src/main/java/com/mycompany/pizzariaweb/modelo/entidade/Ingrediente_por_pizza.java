@@ -9,17 +9,17 @@ package com.mycompany.pizzariaweb.modelo.entidade;
  * @author 14830919612
  */
 public class Ingrediente_por_pizza {
-    private Integer codigo;
+    private Integer cod;
     private Pizza pizza_codPizza = new Pizza();
     private Ingrediente ingrediente_codIngrediente = new Ingrediente();
     private float quantIngrediente;
 
-    public Integer getCodigo() {
-        return codigo;
+    public Integer getCod() {
+        return cod;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setCodigo(Integer cod) {
+        this.cod = cod;
     }
 
     public Pizza getPizza_codPizza() {

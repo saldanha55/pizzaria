@@ -1,85 +1,82 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.entidade;
 
-/**
- *
- * @author 14830919612
- */
 public class Cliente {
-    private Integer codigoCliente;
-    private String nomeCliente;
-    private String telefoneCliente;
-    private String cpfCliente;
-    private String bairroCliente;
-    private String ruaCliente;
-    private String numeroCliente;
-    private String emailCliente;
 
-    public Integer getCodigoCliente() {
-        return codigoCliente;
+    private int codCliente;
+    private String nome;
+    private String telefone;
+    private String cpf;
+    private String bairro;
+    private String rua;
+    private String numero;
+    private String email;
+
+    public Cliente() {
     }
 
-    public void setCodigoCliente(Integer codigoCliente) {
-        this.codigoCliente = codigoCliente;
+    // Getters e Setters para todos os campos
+
+    public int getCodCliente() {
+        return codCliente;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    public void setCodCliente(int codCliente) {
+        this.codCliente = codCliente;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public String getNome() {
+        return nome;
     }
 
-    public String getTelefoneCliente() {
-        return telefoneCliente;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setTelefoneCliente(String telefoneCliente) {
-        this.telefoneCliente = telefoneCliente;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public String getCpfCliente() {
-        return cpfCliente;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public void setCpfCliente(String cpfCliente) {
-        this.cpfCliente = cpfCliente;
+    public String getCpf() {
+        return cpf;
     }
 
-    public String getBairroCliente() {
-        return bairroCliente;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public void setBairroCliente(String bairroCliente) {
-        this.bairroCliente = bairroCliente;
+    public String getBairro() {
+        return bairro;
     }
 
-    public String getRuaCliente() {
-        return ruaCliente;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
-    public void setRuaCliente(String ruaCliente) {
-        this.ruaCliente = ruaCliente;
+    public String getRua() {
+        return rua;
     }
 
-    public String getNumeroCliente() {
-        return numeroCliente;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
-    public void setNumeroCliente(String numeroCliente) {
-        this.numeroCliente = numeroCliente;
+    public String getNumero() {
+        return numero;
     }
 
-    public String getEmailCliente() {
-        return emailCliente;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public void setEmailCliente(String emailCliente) {
-        this.emailCliente = emailCliente;
+    public String getEmail() {
+        return email;
     }
-    
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

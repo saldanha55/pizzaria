@@ -1,36 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.entidade;
 
-/**
- *
- * @author erikv
- */
 public class Pizza {
-    private Integer codPizza;
+
+    private int codPizza;
     private String nome;
-    private Double precoBase;
-    private String tamanho; // NOVO CAMPO
-    private RecheioBorda pizza_borda = new RecheioBorda();
+    private double precoBase;
+    private String tamanho; // Mantido como String para compatibilidade com o seu DAO. ENUM seria uma opção.
+    private RecheioBorda borda; // O objeto relacionado
 
-    // ... (getters e setters existentes de codPizza, nome, precoBase)
-
-    // GETTER E SETTER PARA O NOVO CAMPO
-    public String getTamanho() {
-        return tamanho;
+    public Pizza() {
     }
 
-    public void setTamanho(String tamanho) {
-        this.tamanho = tamanho;
-    }
+    // Getters e Setters para todos os campos
 
-    public Integer getCodPizza() {
+    public int getCodPizza() {
         return codPizza;
     }
 
-    public void setCodPizza(Integer codPizza) {
+    public void setCodPizza(int codPizza) {
         this.codPizza = codPizza;
     }
 
@@ -42,20 +29,27 @@ public class Pizza {
         this.nome = nome;
     }
 
-    public Double getPrecoBase() {
+    public double getPrecoBase() {
         return precoBase;
     }
 
-    public void setPrecoBase(Double precoBase) {
+    public void setPrecoBase(double precoBase) {
         this.precoBase = precoBase;
     }
 
-    public RecheioBorda getPizza_borda() {
-        return pizza_borda;
+    public String getTamanho() {
+        return tamanho;
     }
 
-    public void setPizza_borda(RecheioBorda pizza_borda) {
-        this.pizza_borda = pizza_borda;
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
     }
-    
+
+    public RecheioBorda getBorda() {
+        return borda;
+    }
+
+    public void setBorda(RecheioBorda borda) {
+        this.borda = borda;
+    }
 }

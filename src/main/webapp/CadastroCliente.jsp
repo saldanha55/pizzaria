@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="Menu.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,6 +8,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="header.jsp" %>
+
         <h1 class="tit">Cadastro Cliente</h1>
         <div class="cadastro">
 

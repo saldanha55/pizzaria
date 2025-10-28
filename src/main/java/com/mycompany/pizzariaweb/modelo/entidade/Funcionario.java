@@ -1,103 +1,115 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.entidade;
 
-import java.util.Calendar;
+import java.util.Date;
+import java.io.Serializable; // 1. Importar a interface Serializable
 
-/**
- *
- * @author 16658144621
- */
-public class Funcionario {
-    
-    private Integer codigoFuncionario;
-    private String nomeFuncionario, cpfFuncionario, cargoFuncionario, bairroFuncionario, ruaFuncionario, numeroFuncionario, telefoneFuncionario, emailFuncionario;
-    private Double salarioFuncionario;
+public class Funcionario implements Serializable { // 2. Implementar a interface
 
-    public Integer getCodigoFuncionario() {
-        return codigoFuncionario;
+    // 3. Adicionar um serialVersionUID para controle de versão da classe
+    private static final long serialVersionUID = 1L;
+
+    private int codFuncionario;
+    private String nome;
+    private String cpf;
+    private double salario;
+    private String cargo;
+    private String bairro;
+    private String rua;
+    private String numero;
+    private String telefone;
+    private String email;
+    private Date nascimento;
+
+    public Funcionario() {
     }
 
-    public void setCodigoFuncionario(Integer codigoFuncionario) {
-        this.codigoFuncionario = codigoFuncionario;
+    // Getters e Setters para todos os campos
+
+    public int getCodFuncionario() {
+        return codFuncionario;
     }
 
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
+    public void setCodFuncionario(int codFuncionario) {
+        this.codFuncionario = codFuncionario;
     }
 
-    public void setNomeFuncionario(String nomeFuncionario) {
-        this.nomeFuncionario = nomeFuncionario;
+    public String getNome() {
+        return nome;
     }
 
-    public String getCpfFuncionario() {
-        return cpfFuncionario;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setCpfFuncionario(String cpfFuncionario) {
-        this.cpfFuncionario = cpfFuncionario;
+    public String getCpf() {
+        return cpf;
     }
 
-    public String getCargoFuncionario() {
-        return cargoFuncionario;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public void setCargoFuncionario(String cargoFuncionario) {
-        this.cargoFuncionario = cargoFuncionario;
+    public double getSalario() {
+        return salario;
     }
 
-    public String getBairroFuncionario() {
-        return bairroFuncionario;
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
 
-    public void setBairroFuncionario(String bairroFuncionario) {
-        this.bairroFuncionario = bairroFuncionario;
+    public String getCargo() {
+        return cargo;
     }
 
-    public String getRuaFuncionario() {
-        return ruaFuncionario;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
-    public void setRuaFuncionario(String ruaFuncionario) {
-        this.ruaFuncionario = ruaFuncionario;
+    public String getBairro() {
+        return bairro;
     }
 
-    public String getNumeroFuncionario() {
-        return numeroFuncionario;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
-    public void setNumeroFuncionario(String numeroFuncionario) {
-        this.numeroFuncionario = numeroFuncionario;
+    public String getRua() {
+        return rua;
     }
 
-    public String getTelefoneFuncionario() {
-        return telefoneFuncionario;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
-    public void setTelefoneFuncionario(String telefoneFuncionario) {
-        this.telefoneFuncionario = telefoneFuncionario;
+    public String getNumero() {
+        return numero;
     }
 
-    public String getEmailFuncionario() {
-        return emailFuncionario;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public void setEmailFuncionario(String emailFuncionario) {
-        this.emailFuncionario = emailFuncionario;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public Double getSalarioFuncionario() {
-        return salarioFuncionario;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public void setSalarioFuncionario(Double salarioFuncionario) {
-        this.salarioFuncionario = salarioFuncionario;
+    public String getEmail() {
+        return email;
     }
 
-    public void setData(Calendar converteCalendario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setEmail(String email) {
+        this.email = email;
     }
-    
+
+    public Date getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(Date nascimento) {
+        this.nascimento = nascimento;
+    }
 }

@@ -1,44 +1,68 @@
-<%-- 
-    Document   : Menu
-    Created on : 15 de jul de 2024, 13:24:54
-    Author     : 14830919612
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilo.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <div id="interface">
-            <nav>
-                <ul>
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/BebidaControlador?opcao=cancelar">Bebida</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/RecheioBordaControlador?opcao=cancelar">Recheio Borda</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/IngredienteControlador?opcao=cancelar">Ingrediente</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/ClienteControlador?opcao=cancelar">Cliente</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/FuncionarioControlador?opcao=cancelar">Funcionário</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/FornecedorControlador?opcao=cancelar">Fornecedor</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/Bebida_por_vendaControlador?opcao=cancelar">Bebida por Venda</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/PizzaControlador?opcao=cancelar">Pizza</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/Pizza_por_vendaControlador?opcao=cancelar">Pizza por Venda</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/Ingrediente_por_pizzaControlador?opcao=cancelar">Ingrediente por Pizza</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/VendaControlador?opcao=cancelar">Início</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/ItensVendaControlador?opcao=cancelar">Venda</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/VendaControlador?opcao=cancelar">Controle de Vendas</a></li>
-                    <li><a href="${pageContext.request.contextPath}/login.jsp">Login</a></li>
-                    <li><a href="${pageContext.request.contextPath}${URL_BASE}/LogoutControlador">Logout</a></li>
-                </ul>
-            </nav>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reis di Napoli - Gerenciamento</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Reis di Napoli</h1>
+                <p class="slogan">Cada fatia é realeza.</p>
+            </div>
+            <a href="index.jsp" class="back-link">Voltar ao Início</a>
         </div>
-    </body>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </header>
+
+    <main class="container">
+        <h2 class="page-title">Painel de Gerenciamento</h2>
+        <nav class="management-nav">
+            <a href="CadastroCliente.jsp" class="nav-card">
+                <h3>Clientes</h3>
+                <p>Adicionar, editar e remover clientes.</p>
+            </a>
+            <a href="CadastroFuncionario.jsp" class="nav-card">
+                <h3>Funcionários</h3>
+                <p>Gerenciar a equipe da pizzaria.</p>
+            </a>
+            <a href="CadastroPizza.jsp" class="nav-card">
+                <h3>Pizzas</h3>
+                <p>Definir sabores e preços das pizzas.</p>
+            </a>
+            <a href="CadastroBebida.jsp" class="nav-card">
+                <h3>Bebidas</h3>
+                <p>Gerenciar o estoque de bebidas.</p>
+            </a>
+            <a href="CadastroIngrediente.jsp" class="nav-card">
+                <h3>Ingredientes</h3>
+                <p>Controlar o estoque de ingredientes.</p>
+            </a>
+             <a href="CadastroRecheioBorda.jsp" class="nav-card">
+                <h3>Bordas</h3>
+                <p>Gerenciar tipos e preços das bordas.</p>
+            </a>
+            <a href="CadastroFornecedor.jsp" class="nav-card">
+                <h3>Fornecedores</h3>
+                <p>Administrar os fornecedores.</p>
+            </a>
+             <a href="CadastroIngrediente_por_pizza.jsp" class="nav-card">
+                <h3>Receitas</h3>
+                <p>Montar a receita de cada pizza.</p>
+            </a>
+        </nav>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Reis di Napoli. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
 </html>

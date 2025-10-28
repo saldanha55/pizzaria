@@ -1,0 +1,148 @@
+/* --- Estilos para Páginas de Cadastro e Login --- */
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--cor-dourada);
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-container .page-title {
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none;
+    transition: color 0.3s;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 15px 15px 15px 50px; /* Espaço para o ícone */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Fauna One', serif;
+    font-size: 1.1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group select {
+    padding-left: 45px; /* Ajuste para o select */
+}
+
+
+.form-group input::placeholder,
+.form-group select {
+    color: #999;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--cor-vinho);
+    box-shadow: 0 0 8px rgba(120, 0, 0, 0.25);
+}
+
+.form-group input:focus ~ .icon,
+.form-group select:focus ~ .icon {
+    color: var(--cor-vinho);
+}
+
+.form-actions {
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.1em;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--cor-vinho), #a12a2a);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #a12a2a, var(--cor-vinho));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* --- Links abaixo do formulário --- */
+.form-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1em;
+}
+
+.form-link a {
+    color: var(--cor-vinho);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.form-link a:hover {
+    text-decoration: underline;
+    color: var(--cor-dourada);
+}
+
+/* --- MENSAGENS DE STATUS --- */
+.status-message {
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.status-sucesso {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.status-erro {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}

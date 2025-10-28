@@ -1,74 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.entidade;
 
-/**
- *
- * @author tulio
- */
 public class ItensVenda {
 
-    private Integer codItensVenda;
-    private Integer quantidade;
-    private Pizza objItens_codPizza = new Pizza();
-    private Venda objItens_codVenda = new Venda();
-    private Bebida objItens_codBebida = new Bebida();
-    private Double valor;
-    
-    public Double getValor() {
-        return valor;
-    }
+    private int codItensVenda;
+    private Venda itens_codVenda;
+    private Pizza itens_codPizza;
+    private Bebida itens_codBebida;
+    private int quantidade;
+    private double valor;
 
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-    
+    // --- CORREÇÃO ---
+    // Getters e setters para todos os campos, incluindo os objetos relacionados.
+    // Isso corrige os erros de "método inexistente".
 
-    public Integer getCodItensVenda() {
+    public int getCodItensVenda() {
         return codItensVenda;
     }
 
-    public void setCodItensVenda(Integer codItensVenda) {
+    public void setCodItensVenda(int codItensVenda) {
         this.codItensVenda = codItensVenda;
     }
 
-    public Integer getQuantidade() {
+    public Venda getItens_codVenda() {
+        return itens_codVenda;
+    }
+
+    public void setItens_codVenda(Venda itens_codVenda) {
+        this.itens_codVenda = itens_codVenda;
+    }
+
+    public Pizza getItens_codPizza() {
+        return itens_codPizza;
+    }
+
+    public void setItens_codPizza(Pizza itens_codPizza) {
+        this.itens_codPizza = itens_codPizza;
+    }
+
+    public Bebida getItens_codBebida() {
+        return itens_codBebida;
+    }
+
+    public void setItens_codBebida(Bebida itens_codBebida) {
+        this.itens_codBebida = itens_codBebida;
+    }
+
+    public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Integer quantidade) {
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
-    public Pizza getObjItens_codPizza() {
-        return objItens_codPizza;
+    public double getValor() {
+        return valor;
     }
 
-    public void setObjItens_codPizza(Pizza objItens_codPizza) {
-        this.objItens_codPizza = objItens_codPizza;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
-
-    public Venda getObjItens_codVenda() {
-        return objItens_codVenda;
-    }
-
-    public void setObjItens_codVenda(Venda objItens_codVenda) {
-        this.objItens_codVenda = objItens_codVenda;
-    }
-
-    public Bebida getObjItens_codBebida() {
-        return objItens_codBebida;
-    }
-
-    public void setObjItens_codBebida(Bebida objItens_codBebida) {
-        this.objItens_codBebida = objItens_codBebida;
-    }
-
-    @Override
-    public String toString() {
-        return objItens_codPizza.getNome() + " Valor: " + objItens_codPizza.getPrecoBase() + " Quant.: " + String.valueOf(quantidade);
-    }
-
 }

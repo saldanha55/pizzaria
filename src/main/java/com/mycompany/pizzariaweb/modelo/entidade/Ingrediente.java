@@ -1,50 +1,46 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.entidade;
 
-/**
- *
- * @author 11997803674
- */
 public class Ingrediente {
-    private Integer codigoIngrediente;
-    private String nomeIngrediente;
-    private double precoIngrediente;
-    private float quantidadeEstoqueIngrediente;
 
-    public Integer getCodigoIngrediente() {
-        return codigoIngrediente;
+    private int codIngrediente;
+    private String nome;
+    private double preco;
+    private float quantEstoque;
+
+    public Ingrediente() {
     }
 
-    public void setCodigoIngrediente(Integer codigoIngrediente) {
-        this.codigoIngrediente = codigoIngrediente;
+    // Getters e Setters para todos os campos
+
+    public int getCodIngrediente() {
+        return codIngrediente;
     }
 
-    public String getNomeIngrediente() {
-        return nomeIngrediente;
+    public void setCodIngrediente(int codIngrediente) {
+        this.codIngrediente = codIngrediente;
     }
 
-    public void setNomeIngrediente(String nomeIngrediente) {
-        this.nomeIngrediente = nomeIngrediente;
+    public String getNome() {
+        return nome;
     }
 
-    public double getPrecoIngrediente() {
-        return precoIngrediente;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setPrecoIngrediente(double precoIngrediente) {
-        this.precoIngrediente = precoIngrediente;
+    public double getPreco() {
+        return preco;
     }
 
-    public float getQuantidadeEstoqueIngrediente() {
-        return quantidadeEstoqueIngrediente;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
-    public void setQuantidadeEstoqueIngrediente(float quantidadeEstoqueIngrediente) {
-        this.quantidadeEstoqueIngrediente = quantidadeEstoqueIngrediente;
+    public float getQuantEstoque() {
+        return quantEstoque;
     }
 
-    
+    public void setQuantEstoque(float quantEstoque) {
+        this.quantEstoque = quantEstoque;
+    }
 }

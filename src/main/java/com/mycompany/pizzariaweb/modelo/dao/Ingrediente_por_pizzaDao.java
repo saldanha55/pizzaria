@@ -1,58 +1,122 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.dao;
 
+import com.mycompany.pizzariaweb.modelo.entidade.Ingrediente;
 import com.mycompany.pizzariaweb.modelo.entidade.Ingrediente_por_pizza;
+import com.mycompany.pizzariaweb.modelo.entidade.Pizza;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 14830919612
- */
-public class Ingrediente_por_pizzaDao extends GenericoDAO<Ingrediente_por_pizza>{
-    
-    public void salvar(Ingrediente_por_pizza objIngrediente_por_pizza){
-        String sql = "INSERT INTO INGREDIENTE_POR_PIZZA(PIZZA_CODPIZZA, INGREDIENTE_CODINGREDIENTE, QUANTINGREDIENTE) VALUES(?,?,?)";
-        save(sql, objIngrediente_por_pizza.getPizza_codPizza().getCodPizza(), objIngrediente_por_pizza.getIngrediente_codIngrediente().getCodigoIngrediente(), objIngrediente_por_pizza.getQuantIngrediente());
+public class Ingrediente_por_pizzaDao implements GenericoDAO<Ingrediente_por_pizza> {
+
+    public Ingrediente_por_pizzaDao() {
     }
-    
-    public void alterar(Ingrediente_por_pizza objIngrediente_por_pizza){
-        String sql = "UPDATE INGREDIENTE_POR_PIZZA SET PIZZA_CODPIZZA=?, INGREDIENTE_CODINGREDIENTE=?, QUANTINGREDIENTE=? WHERE CODIGO=?";
-        save(sql, objIngrediente_por_pizza.getPizza_codPizza().getCodPizza(), objIngrediente_por_pizza.getIngrediente_codIngrediente().getCodigoIngrediente(), objIngrediente_por_pizza.getQuantIngrediente(), objIngrediente_por_pizza.getCodigo());
-    }
-    
-    public void excluir(Ingrediente_por_pizza objIngrediente_por_pizza){
-        String sql = "DELETE FROM INGREDIENTE_POR_PIZZA WHERE CODIGO=?";
-        save(sql, objIngrediente_por_pizza.getCodigo());
-    }
-    
-    public List<Ingrediente_por_pizza> buscarTodas(){
-        String sql = "SELECT * FROM INGREDIENTE_POR_PIZZA";
-        return buscarTodos(sql, new Ingrediente_por_pizzaRowMapper());
-    }
-    
-    public Ingrediente_por_pizza buscarPorId(int id){
-        String sql = "SELECT * FROM INGREDIENTE_POR_PIZZA WHERE CODIGO=?";
-        return buscarPorId(sql, new Ingrediente_por_pizzaRowMapper(), id);
-    }
-    
-    private static class Ingrediente_por_pizzaRowMapper implements RowMapper<Ingrediente_por_pizza>{
+
+    @Override
+    public Ingrediente_por_pizza inserir(Ingrediente_por_pizza entidade) throws SQLException {
+        String sql = "INSERT INTO ingrediente_por_pizza (Pizza_codPizza, Ingrediente_codIngrediente, quantIngrediente) VALUES (?, ?, ?)";
         
-        PizzaDao pizzaDao = new PizzaDao();
-        IngredienteDao ingredienteDao = new IngredienteDao();
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            
+            stmt.setInt(1, entidade.getPizza_codPizza().getCodPizza());
+            stmt.setInt(2, entidade.getIngrediente_codIngrediente().getCodIngrediente());
+            stmt.setFloat(3, entidade.getQuantIngrediente());
+            
+            stmt.execute();
+
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    entidade.setCodigo(rs.getInt(1));
+                }
+            }
+        }
+        return entidade;
+    }
+
+    @Override
+    public void alterar(Ingrediente_por_pizza entidade) throws SQLException {
+        String sql = "UPDATE ingrediente_por_pizza SET Pizza_codPizza = ?, Ingrediente_codIngrediente = ?, quantIngrediente = ? WHERE codigo = ?";
         
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, entidade.getPizza_codPizza().getCodPizza());
+            stmt.setInt(2, entidade.getIngrediente_codIngrediente().getCodIngrediente());
+            stmt.setFloat(3, entidade.getQuantIngrediente());
+            stmt.setInt(4, entidade.getCod());
+            
+            stmt.executeUpdate();
+        }
+    }
+
+    @Override
+    public void excluir(Ingrediente_por_pizza entidade) throws SQLException {
+        String sql = "DELETE FROM ingrediente_por_pizza WHERE codigo = ?";
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, entidade.getCod());
+            stmt.executeUpdate();
+        }
+    }
+
+    @Override
+    public Ingrediente_por_pizza buscarPorId(Integer id) throws SQLException {
+        String sql = "SELECT * FROM ingrediente_por_pizza WHERE codigo = ?";
+        Ingrediente_por_pizza ipp = null;
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, id);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    ipp = new IngredientePorPizzaRowMapper().mapRow(rs);
+                }
+            }
+        }
+        return ipp;
+    }
+
+    @Override
+    public List<Ingrediente_por_pizza> listar() throws SQLException {
+        String sql = "SELECT * FROM ingrediente_por_pizza";
+        List<Ingrediente_por_pizza> lista = new ArrayList<>();
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                lista.add(new IngredientePorPizzaRowMapper().mapRow(rs));
+            }
+        }
+        return lista;
+    }
+
+    public static class IngredientePorPizzaRowMapper implements RowMapper<Ingrediente_por_pizza> {
         @Override
-        public Ingrediente_por_pizza mapRow(ResultSet rs) throws SQLException{
-            Ingrediente_por_pizza objIngrediente_por_pizza = new Ingrediente_por_pizza();
-            objIngrediente_por_pizza.setCodigo(rs.getInt("codigo"));
-            objIngrediente_por_pizza.setPizza_codPizza(pizzaDao.buscarPorId(rs.getInt("Pizza_codPizza")));
-            objIngrediente_por_pizza.setIngrediente_codIngrediente(ingredienteDao.buscarPorId(rs.getInt("Ingrediente_codIngrediente")));
-            objIngrediente_por_pizza.setQuantIngrediente(rs.getFloat("quantIngrediente"));
-            return objIngrediente_por_pizza;
+        public Ingrediente_por_pizza mapRow(ResultSet rs) throws SQLException {
+            Ingrediente_por_pizza ipp = new Ingrediente_por_pizza();
+            ipp.setCodigo(rs.getInt("codigo"));
+            ipp.setQuantIngrediente(rs.getFloat("quantIngrediente"));
+
+            PizzaDao pizzaDao = new PizzaDao();
+            Pizza pizza = pizzaDao.buscarPorId(rs.getInt("Pizza_codPizza"));
+            ipp.setPizza_codPizza(pizza);
+
+            IngredienteDao ingredienteDao = new IngredienteDao();
+            Ingrediente ingrediente = ingredienteDao.buscarPorId(rs.getInt("Ingrediente_codIngrediente"));
+            ipp.setIngrediente_codIngrediente(ingrediente);
+
+            return ipp;
         }
     }
 }

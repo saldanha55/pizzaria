@@ -1,38 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.entidade;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 
-/**
- *
- * @author 14830919612
- */
 public class Venda {
-    private Integer codPedido;
-    private Calendar data;
+
+    private int codPedido;
+    private Date data;
     private String tipoPagamento;
     private Double desconto;
     private Double comissao;
-    private Cliente cliente_codCliente = new Cliente();
-    private Funcionario funcionario_codFuncionario = new Funcionario();
+    private Cliente cliente;
+    private Funcionario funcionario;
 
-    public Integer getCodPedido() {
+    // --- CORREÇÃO ---
+    // Adicionei um construtor vazio, que é uma boa prática para entidades.
+    public Venda() {
+    }
+
+    // Getters e Setters para todos os campos.
+    // Garante que os DAOs e JSPs possam acessar e modificar os dados da Venda.
+
+    public int getCodPedido() {
         return codPedido;
     }
 
-    public void setCodPedido(Integer codPedido) {
+    public void setCodPedido(int codPedido) {
         this.codPedido = codPedido;
     }
 
-    public Calendar getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -60,25 +60,19 @@ public class Venda {
         this.comissao = comissao;
     }
 
-    public Cliente getCliente_codCliente() {
-        return cliente_codCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setCliente_codCliente(Cliente cliente_codCliente) {
-        this.cliente_codCliente = cliente_codCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Funcionario getFuncionario_codFuncionario() {
-        return funcionario_codFuncionario;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setFuncionario_codFuncionario(Funcionario funcionario_codFuncionario) {
-        this.funcionario_codFuncionario = funcionario_codFuncionario;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
-    
-    public String getDataFormatada() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data.getTime()); 
-   }
-    
 }

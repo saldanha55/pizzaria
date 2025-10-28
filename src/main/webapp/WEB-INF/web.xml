@@ -1,11 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-   version="6.0">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <servlet>
+        <servlet-name>RelatorioControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.RelatorioControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RelatorioControlador</servlet-name>
+        <url-pattern>/RelatorioControlador/*</url-pattern> 
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BebidaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.BebidaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BebidaControlador</servlet-name>
+        <url-pattern>/BebidaControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClienteControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.ClienteControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClienteControlador</servlet-name>
+        <url-pattern>/ClienteControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FornecedorControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.FornecedorControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FornecedorControlador</servlet-name>
+        <url-pattern>/FornecedorControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FuncionarioControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.FuncionarioControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FuncionarioControlador</servlet-name>
+        <url-pattern>/FuncionarioControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>IngredienteControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.IngredienteControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IngredienteControlador</servlet-name>
+        <url-pattern>/IngredienteControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Ingrediente_por_pizzaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.Ingrediente_por_pizzaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Ingrediente_por_pizzaControlador</servlet-name>
+        <url-pattern>/Ingrediente_por_pizzaControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PizzaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.PizzaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PizzaControlador</servlet-name>
+        <url-pattern>/PizzaControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RecheioBordaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.RecheioBordaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RecheioBordaControlador</servlet-name>
+        <url-pattern>/RecheioBordaControlador</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LoginControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.LoginControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginControlador</servlet-name>
+        <url-pattern>/LoginControlador</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UsuarioControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.UsuarioControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsuarioControlador</servlet-name>
+        <url-pattern>/UsuarioControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SenhaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.SenhaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SenhaControlador</servlet-name>
+        <url-pattern>/SenhaControlador</url-pattern>
+    </servlet-mapping>
+
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
+    
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+    
 </web-app>

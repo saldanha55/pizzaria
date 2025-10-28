@@ -4,7 +4,6 @@
     Author     : 14830919612
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="Menu.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <h1 class="tit">Cadastro Ingrediente por Pizza</h1>
         <div class="cadastro">
             
@@ -36,11 +36,11 @@
                     <select name="ingrediente_codIngrediente" class="form">
                         <c:forEach var="ingrediente" items="${ingredientes}">
                             <c:choose>
-                                <c:when test="${ingrediente.codigoIngrediente eq ingrediente_codIngrediente}">
-                          <option selected value="${ingrediente.codigoIngrediente}">${ingrediente.nomeIngrediente}</option>
+                                <c:when test="${ingrediente.codIngrediente eq ingrediente_codIngrediente}">
+                          <option selected value="${ingrediente.codIngrediente}">${ingrediente.nomeIngrediente}</option>
                                 </c:when>
                                 <c:otherwise>
-                          <option value="${ingrediente.codigoIngrediente}">${ingrediente.nomeIngrediente}</option>          
+                          <option value="${ingrediente.codIngrediente}">${ingrediente.nomeIngrediente}</option>          
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>
@@ -51,7 +51,7 @@
                 </p>
                 
                 <input type="hidden" name="opcao" value="${opcao}" >
-                <input type="hidden" name="codigo" value="${codigo}" >
+                <input type="hidden" name="cod" value="${cod}" >
                 
                 <table border="0">
                     <tr>
@@ -89,16 +89,16 @@
                     <c:forEach var="ingrediente_por_pizza" items="${ingredientes_por_pizzas}">
                         <tbody class="tbody">
                             <tr>
-                                <td class="td">${ingrediente_por_pizza.codigo}</td>
+                                <td class="td">${ingrediente_por_pizza.cod}</td>
                                 <td class="td">${ingrediente_por_pizza.pizza_codPizza.nome}</td>
                                 <td class="td">${ingrediente_por_pizza.ingrediente_codIngrediente.nomeIngrediente}</td>
                                 <td class="td">${ingrediente_por_pizza.quantIngrediente}</td>
 
                                 <td class="td">
                                     <form  name="cadastro" action="${pageContext.request.contextPath}${URL_BASE}/Ingrediente_por_pizzaControlador" >
-                                        <input type="hidden" name="codigo" value="${ingrediente_por_pizza.codigo}">
-                                        <input type="hidden" name="pizza_codPizza" value="${Ingrediente_por_pizza.pizza_codPizza.codPizza}">
-                                        <input type="hidden" name="ingrediente_codIngrediente" value="${Ingrediente_por_pizza.ingrediente_codIngrediente.codigoIngrediente}">
+                                        <input type="hidden" name="cod" value="${ingrediente_por_pizza.cod}">
+                                        <input type="hidden" name="pizza_codPizza" value="${ingrediente_por_pizza.pizza_codPizza.codPizza}">
+                                        <input type="hidden" name="ingrediente_codIngrediente" value="${ingrediente_por_pizza.ingrediente_codIngrediente.codIngrediente}">
                                         <input type="hidden" name="quantIngrediente" value="${ingrediente_por_pizza.quantIngrediente}">
 
                                         <input type="hidden" name="opcao" value="editar">
@@ -107,9 +107,9 @@
                                 </td>
                                 <td class="td">
                                     <form  name="cadastro" action="${pageContext.request.contextPath}${URL_BASE}/Ingrediente_por_pizzaControlador" >
-                                        <input type="hidden" name="codigo" value="${ingrediente_por_pizza.codigo}">
-                                        <input type="hidden" name="pizza_codPizza" value="${Ingrediente_por_pizza.pizza_codPizza.codPizza}">
-                                        <input type="hidden" name="ingrediente_codIngrediente" value="${Ingrediente_por_pizza.ingrediente_codIngrediente.codigoIngrediente}">
+                                        <input type="hidden" name="cod" value="${ingrediente_por_pizza.cod}">
+                                        <input type="hidden" name="pizza_codPizza" value="${ingrediente_por_pizza.pizza_codPizza.codPizza}">
+                                        <input type="hidden" name="ingrediente_codIngrediente" value="${ingrediente_por_pizza.ingrediente_codIngrediente.codIngrediente}">
                                         <input type="hidden" name="quantIngrediente" value="${ingrediente_por_pizza.quantIngrediente}">
 
                                         <input type="hidden" name="opcao" value="excluir">

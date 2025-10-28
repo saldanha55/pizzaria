@@ -1,49 +1,46 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.entidade;
 
-/**
- *
- * @author 14830919612
- */
 public class Bebida {
-    private Integer codigoBebida;
-    private String nomeBebida;
-    private double precoBebida;
-    private int quantidadeBebida;
 
-    public Integer getCodigoBebida() {
-        return codigoBebida;
+    private int codBebida;
+    private String nome;
+    private double preco;
+    private int quantidade;
+
+    public Bebida() {
     }
 
-    public void setCodigoBebida(Integer codigoBebida) {
-        this.codigoBebida = codigoBebida;
+    // Getters e Setters para todos os campos
+
+    public int getCodBebida() {
+        return codBebida;
     }
 
-    public String getNomeBebida() {
-        return nomeBebida;
+    public void setCodBebida(int codBebida) {
+        this.codBebida = codBebida;
     }
 
-    public void setNomeBebida(String nomeBebida) {
-        this.nomeBebida = nomeBebida;
+    public String getNome() {
+        return nome;
     }
 
-    public double getPrecoBebida() {
-        return precoBebida;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setPrecoBebida(double precoBebida) {
-        this.precoBebida = precoBebida;
+    public double getPreco() {
+        return preco;
     }
 
-    public int getQuantidadeBebida() {
-        return quantidadeBebida;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
-    public void setQuantidadeBebida(int quantidadeBebida) {
-        this.quantidadeBebida = quantidadeBebida;
+    public int getQuantidade() {
+        return quantidade;
     }
-    
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 }

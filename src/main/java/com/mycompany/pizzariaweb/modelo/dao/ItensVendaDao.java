@@ -1,140 +1,144 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.dao;
 
 import com.mycompany.pizzariaweb.modelo.entidade.ItensVenda;
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.ArrayList;
-//import java.util.List;
 
-/**
- *
- * @author tulio
- */
-public class ItensVendaDao extends GenericoDAO<ItensVenda> {
+public class ItensVendaDao implements GenericoDAO<ItensVenda> {
 
-    public ItensVenda buscarPorId(int id) {// modificando igual a getListaItensVenda
-        String select = "select * from itensvenda where Itens_codVenda=?";
-        return buscarPorId(select, new ItensVendaDao.ItensVendaRowMapper(), id);
+    public ItensVendaDao() {
     }
 
-    public void salvar(ItensVenda i) {
-        String insert = "insert into itensvenda (Itens_codVenda, Itens_codPizza, Itens_codBebida, quantidade, valor) values (?,?,?,?,?)";
-        save(insert, i.getObjItens_codVenda().getCodPedido(), i.getObjItens_codPizza().getCodPizza(), i.getObjItens_codBebida().getCodigoBebida(), i.getQuantidade(), i.getValor());
+    @Override
+    public ItensVenda inserir(ItensVenda entidade) throws SQLException {
+        String sql = "INSERT INTO itensvenda (Itens_codVenda, Itens_codPizza, Itens_codBebida, quantidade, valor) VALUES (?, ?, ?, ?, ?)";
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            
+            stmt.setInt(1, entidade.getItens_codVenda().getCodPedido());
+
+            if (entidade.getItens_codPizza() != null) {
+                stmt.setInt(2, entidade.getItens_codPizza().getCodPizza());
+                stmt.setNull(3, java.sql.Types.INTEGER);
+            } else if (entidade.getItens_codBebida() != null) {
+                stmt.setNull(2, java.sql.Types.INTEGER);
+                stmt.setInt(3, entidade.getItens_codBebida().getCodBebida());
+            } else {
+                throw new SQLException("O item da venda deve ter uma pizza ou uma bebida.");
+            }
+
+            stmt.setInt(4, entidade.getQuantidade());
+            stmt.setDouble(5, entidade.getValor());
+            stmt.execute();
+
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    entidade.setCodItensVenda(rs.getInt(1));
+                }
+            }
+        }
+        return entidade;
     }
 
-    public void excluir(ItensVenda i) {
-        String delete = "delete from itensvenda where codItensVenda=?";
-        save(delete, i.getCodItensVenda());
+    public List<ItensVenda> listarPorVenda(int vendaId) throws SQLException {
+        String sql = "SELECT * FROM itensvenda WHERE Itens_codVenda = ?";
+        List<ItensVenda> itens = new ArrayList<>();
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, vendaId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    itens.add(new ItensVendaRowMapper().mapRow(rs));
+                }
+            }
+        }
+        return itens;
     }
 
-    public List<ItensVenda> buscarTodosPorId(int id) {
-        String sql = "select * from itensvenda where Itens_codVenda = ?";
-        List<ItensVenda> lista = buscarTodos(sql, new ItensVendaRowMapper(), id);
-        System.out.println("LISTA DE ITENSVENDA {");
-        for(ItensVenda item : lista)
-            System.out.println(item.toString());
-        System.out.println("}");
-        return lista;
+    @Override
+    public void alterar(ItensVenda entidade) throws SQLException {
+        // A alteração de um item de venda geralmente não é uma prática comum.
+        // Normalmente, o item é removido e adicionado novamente com os novos valores.
+        // Deixado em branco intencionalmente.
     }
 
+    @Override
+    public void excluir(ItensVenda entidade) throws SQLException {
+        String sql = "DELETE FROM itensvenda WHERE codItensVenda = ?";
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, entidade.getCodItensVenda());
+            stmt.executeUpdate();
+        }
+    }
+
+    @Override
+    public ItensVenda buscarPorId(Integer id) throws SQLException {
+        String sql = "SELECT * FROM itensvenda WHERE codItensVenda = ?";
+        ItensVenda item = null;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, id);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    item = new ItensVendaRowMapper().mapRow(rs);
+                }
+            }
+        }
+        return item;
+    }
+    
+    @Override
+    public List<ItensVenda> listar() throws SQLException {
+        String sql = "SELECT * FROM itensvenda";
+        List<ItensVenda> itens = new ArrayList<>();
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                itens.add(new ItensVendaRowMapper().mapRow(rs));
+            }
+        }
+        return itens;
+    }
+    
     public static class ItensVendaRowMapper implements RowMapper<ItensVenda> {
-
-        PizzaDao pizzaDao = new PizzaDao();
-        BebidaDao bebidaDao = new BebidaDao();
-        VendaDao vendaDao = new VendaDao();
-
         @Override
         public ItensVenda mapRow(ResultSet rs) throws SQLException {
-            ItensVenda itensVenda = new ItensVenda();
-            itensVenda.setCodItensVenda(rs.getInt("codItensVenda"));
-            itensVenda.setObjItens_codPizza(pizzaDao.buscarPorId(rs.getInt("Itens_codPizza")));
-            itensVenda.setObjItens_codBebida(bebidaDao.buscarPorId(rs.getInt("Itens_codBebida")));
-            itensVenda.setObjItens_codVenda(vendaDao.buscarPorId(rs.getInt("Itens_codVenda")));
-            itensVenda.setQuantidade(rs.getInt("quantidade"));
-            itensVenda.setValor(rs.getDouble("valor"));
-            return itensVenda;
-        }
+            ItensVenda item = new ItensVenda();
+            item.setCodItensVenda(rs.getInt("codItensVenda"));
+            item.setQuantidade(rs.getInt("quantidade"));
+            item.setValor(rs.getDouble("valor"));
 
-    }
+            VendaDao vendaDao = new VendaDao();
+            item.setItens_codVenda(vendaDao.buscarPorId(rs.getInt("Itens_codVenda")));
 
-    /*  
-public List<ItensVenda> getListaItensVenda(Integer id) {
-        String sql = "select * from itensvenda where idvenda=?";
-        List<ItensVenda> lista = new ArrayList<>();
-        try (Connection con = ConnectionFactory.getInstance().getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                ItensVenda obj = new ItensVenda();
-                System.out.println("IDVENDA=" + rs.getInt("idvenda"));
-                // obj.getObjVenda().setIdVenda(rs.getInt("idvenda"));
-                obj.setIdItensVenda(rs.getInt("iditensvenda"));
-                obj.setObjProduto(produtoDao.buscarPorId(rs.getInt("idProduto")));
-                obj.setQuantidadeProduto(rs.getInt("quantidade"));
-                obj.getObjProduto().setValor(rs.getDouble("valor"));
-                lista.add(obj);
-            }
-            rs.close();
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return lista;
-    }
-
-    public String incluir(ItensVenda objItensVenda) {
-        String mensagem = "";
-
-        String sql = "insert into itensvenda (idproduto,idvenda,quantidade,valor) values (?,?,?,?)";
-        try (Connection con = ConnectionFactory.getInstance().getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-
-            stmt.setInt(1, objItensVenda.getObjProduto().getIdProduto());
-            stmt.setInt(2, objItensVenda.getObjVenda().getIdVenda());
-            stmt.setInt(3, objItensVenda.getQuantidadeProduto());
-            stmt.setDouble(4, objItensVenda.getObjProduto().getValor());
-
-            if (stmt.executeUpdate() > 0) {
-                mensagem = "Item de venda cadastrado com sucesso!";
-            } else {
-                mensagem = "Item de venda não cadastrado!";
+            int pizzaId = rs.getInt("Itens_codPizza");
+            if (!rs.wasNull()) {
+                PizzaDao pizzaDao = new PizzaDao();
+                item.setItens_codPizza(pizzaDao.buscarPorId(pizzaId));
             }
 
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace(); 
-            //Este método é chamado para imprimir o rastreamento da pilha de execução da exceção. Isso inclui a sequência de chamadas de métodos que levaram à ocorrência da exceção. É uma maneira útil de depurar o código, pois fornece informações detalhadas sobre onde e por que o erro ocorreu.
-        }
-        return mensagem;
-
-    }
-
-    public String remover(ItensVenda objItensVenda) {
-        String sql = "delete from itensvenda where iditensvenda=?";
-        String mensagem = "";
-        try (Connection con = ConnectionFactory.getInstance().getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-
-            stmt.setInt(1, objItensVenda.getIdItensVenda());
-            if (stmt.executeUpdate() > 0) {
-                mensagem = "Item de venda removido com sucesso!";
-
-            } else {
-                mensagem = "Item de venda não removido!";
-
+            int bebidaId = rs.getInt("Itens_codBebida");
+            if (!rs.wasNull()) {
+                BebidaDao bebidaDao = new BebidaDao();
+                item.setItens_codBebida(bebidaDao.buscarPorId(bebidaId));
             }
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return mensagem;
 
+            return item;
+        }
     }
-     */
 }

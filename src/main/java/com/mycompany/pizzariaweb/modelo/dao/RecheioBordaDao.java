@@ -1,52 +1,110 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.pizzariaweb.modelo.dao;
 
 import com.mycompany.pizzariaweb.modelo.entidade.RecheioBorda;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 14830919612
- */
-public class RecheioBordaDao extends GenericoDAO<RecheioBorda>{
-    
-    public void salvar(RecheioBorda objRecheioBorda){
-        String sql = "INSERT INTO recheio_borda(SABOR, PRECO) VALUES(?,?)";
-        save(sql, objRecheioBorda.getSaborRecheioBorda(), objRecheioBorda.getPrecoRecheioBorda());
+public class RecheioBordaDao implements GenericoDAO<RecheioBorda> {
+
+    public RecheioBordaDao() {
     }
-    
-    public void alterar(RecheioBorda objRecheioBorda){
-        String sql = "UPDATE recheio_borda SET SABOR=?, PRECO=? WHERE CODBORDA=?";
-        save(sql, objRecheioBorda.getSaborRecheioBorda(), objRecheioBorda.getPrecoRecheioBorda(), objRecheioBorda.getCodigoRecheioBorda());
+
+    @Override
+    public RecheioBorda inserir(RecheioBorda entidade) throws SQLException {
+        String sql = "INSERT INTO recheio_borda (sabor, preco) VALUES (?, ?)";
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            
+            stmt.setString(1, entidade.getSabor());
+            stmt.setDouble(2, entidade.getPreco());
+            
+            stmt.execute();
+
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    entidade.setCodBorda(rs.getInt(1));
+                }
+            }
+        }
+        return entidade;
     }
-    
-    public void excluir(RecheioBorda objRecheioBorda){
-        String sql = "DELETE FROM recheio_borda WHERE CODBORDA=?";
-        save(sql, objRecheioBorda.getCodigoRecheioBorda());
+
+    @Override
+    public void alterar(RecheioBorda entidade) throws SQLException {
+        String sql = "UPDATE recheio_borda SET sabor = ?, preco = ? WHERE codBorda = ?";
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setString(1, entidade.getSabor());
+            stmt.setDouble(2, entidade.getPreco());
+            stmt.setInt(3, entidade.getCodBorda());
+            
+            stmt.executeUpdate();
+        }
     }
-    
-    public List<RecheioBorda> buscarTodas(){
+
+    @Override
+    public void excluir(RecheioBorda entidade) throws SQLException {
+        String sql = "DELETE FROM recheio_borda WHERE codBorda = ?";
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, entidade.getCodBorda());
+            stmt.executeUpdate();
+        }
+    }
+
+    @Override
+    public RecheioBorda buscarPorId(Integer id) throws SQLException {
+        String sql = "SELECT * FROM recheio_borda WHERE codBorda = ?";
+        RecheioBorda recheioBorda = null;
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, id);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    recheioBorda = new RecheioBordaRowMapper().mapRow(rs);
+                }
+            }
+        }
+        return recheioBorda;
+    }
+
+    @Override
+    public List<RecheioBorda> listar() throws SQLException {
         String sql = "SELECT * FROM recheio_borda";
-        return buscarTodos(sql, new RecheioBordaRowMapper());
+        List<RecheioBorda> recheios = new ArrayList<>();
+        
+        try (Connection connection = ConnectionFactory.getInstance().getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                recheios.add(new RecheioBordaRowMapper().mapRow(rs));
+            }
+        }
+        return recheios;
     }
-    
-    public RecheioBorda buscarPorId(int id){
-        String sql = "SELECT * FROM recheio_borda WHERE CODBORDA=?";
-        return buscarPorId(sql, new RecheioBordaRowMapper(), id);
-    }
-    private static class RecheioBordaRowMapper implements RowMapper<RecheioBorda>{
+
+    public static class RecheioBordaRowMapper implements RowMapper<RecheioBorda> {
         @Override
-        public RecheioBorda mapRow(ResultSet rs) throws SQLException{
-            RecheioBorda objRecheioBorda = new RecheioBorda();
-            objRecheioBorda.setCodigoRecheioBorda(rs.getInt("codBorda"));
-            objRecheioBorda.setSaborRecheioBorda(rs.getString("sabor"));
-            objRecheioBorda.setPrecoRecheioBorda(rs.getDouble("preco"));
-            return objRecheioBorda;
+        public RecheioBorda mapRow(ResultSet rs) throws SQLException {
+            RecheioBorda recheioBorda = new RecheioBorda();
+            recheioBorda.setCodBorda(rs.getInt("codBorda"));
+            recheioBorda.setSabor(rs.getString("sabor"));
+            recheioBorda.setPreco(rs.getDouble("preco"));
+            return recheioBorda;
         }
     }
 }

@@ -1,154 +1,387 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 15 de jul de 2024, 13:46:54
-    Author     : 14830919612
-*/
-body{
-    margin: 0;
+/* --- FONTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Fauna+One&display=swap');
+
+/* --- VARIÁVEIS DE COR --- */
+:root {
+    --cor-vinho: #780000;
+    --cor-dourada: #FFD700;
+    --cor-preta-fundo: #121212;
+    --cor-texto-claro: #f1f1f1;
+    --cor-texto-escuro: #333;
+    --cor-fundo-pagina: #f9f9f9;
 }
 
-div#interface{
-    width: 100%;
+/* --- GERAL --- */
+body {
+    font-family: 'Fauna One', serif;
+    margin: 0;
+    background-color: var(--cor-fundo-pagina);
+    color: var(--cor-texto-escuro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-nav ul{
-    list-style-type: none;
-    background-color: #333;
-    padding: 10px; /*fica aqui E no 'a' para previnir erros de espacidade com o hover.*/
-    text-align: center;
+/* --- CABEÇALHO --- */
+.main-header {
+    background: var(--cor-preta-fundo);
+    color: var(--cor-texto-claro);
+    padding: 25px 0;
+    border-bottom: 5px solid var(--cor-vinho);
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo h1 {
+    font-family: 'Cinzel Decorative', cursive;
     margin: 0;
+    font-size: 2.8em;
+    color: var(--cor-dourada);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-nav ul li{
-    display: inline;
-    margin-right: 10px;
+.logo .slogan {
+    margin: 5px 0 0 0;
+    font-style: italic;
+    font-weight: 400;
+    color: #ccc;
+    font-size: 1.1em;
 }
 
-nav ul li a{
-    color: #fff;
+/* --- INFORMAÇÕES DO USUÁRIO NO CABEÇALHO --- */
+.user-info {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info span {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.logout-button {
+    color: var(--cor-texto-claro);
     text-decoration: none;
-    padding: 10px 10px 11px 10px; /*fica aqui E no 'ul' para previnir erros de espacidade com o hover.*/
-    text-transform: uppercase;
-}
-
-nav ul li a:hover{
-    /*color: #ccc;*/
-    background-color: blue;
-    transition: all 0.5s;
-}
-
-.tit{
-    text-align: center;
-    text-transform: uppercase;
-    transition: all 0.5s;
-}
-
-.cadastro{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tabela{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /*margin-top: 20px;*/
-}
-
-.granTable{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.espaco{
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-thead{
-    background-color: blue;
-    color: #fff;
     font-weight: bold;
+    background-color: var(--cor-vinho);
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 1px solid var(--cor-dourada);
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: var(--cor-dourada);
+    color: var(--cor-preta-fundo);
+    transform: scale(1.05);
+}
+
+/* --- BARRA DE NAVEGAÇÃO DE GERENCIAMENTO --- */
+.management-navbar {
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    padding: 0;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.management-navbar .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 5px 0;
+}
+
+.management-navbar a {
+    color: var(--cor-texto-escuro);
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-family: 'Fauna One', serif;
+    font-weight: 500;
+    font-size: 1.1em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.management-navbar a:hover {
+    background-color: var(--cor-vinho);
+    color: var(--cor-texto-claro);
+}
+
+.management-navbar a.active {
+    background-color: var(--cor-dourada);
+    color: var(--cor-preta-fundo);
+    font-weight: bold;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+main {
+    flex-grow: 1;
+    padding: 40px 0;
+}
+
+.page-title {
     text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+    color: var(--cor-preta-fundo);
+    font-family: 'Cinzel Decorative', cursive;
 }
 
-th{
-    padding: 5px 10px 5px 10px;
+/* --- ESTILOS PARA PÁGINAS DE CADASTRO E LOGIN --- */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
 }
 
-.td{
-    padding: 5px 10px 5px 10px;
+.form-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--cor-dourada);
+    width: 100%;
+    max-width: 500px; /* Padrão para login */
 }
 
-tbody{
-    color: #fff;
-    text-align: center;
+.form-container.wide {
+    max-width: 800px; /* Para formulários de cadastro mais largos */
 }
 
-.tbody:nth-child(odd) {
-    background-color: #000;
-}
-.tbody:nth-child(even) {
-    background-color: #333;
-}
-
-.tbody:hover{
-    background-color: white;
-    color: #000;
-    transition: all 0.5s;
+.form-container .page-title {
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
-.form{
-    display: block;
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
 }
 
-.butaoSalvar, .butaoCancelar, .butaoEditar, .butaoExcluir{
+.form-grid.two-columns {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none;
+    transition: color 0.3s;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 15px 15px 15px 50px; /* Espaço para o ícone */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Fauna One', serif;
+    font-size: 1.1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group select {
+    padding-left: 45px; /* Ajuste para o select */
+}
+
+.form-group input::placeholder,
+.form-group select {
+    color: #999;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--cor-vinho);
+    box-shadow: 0 0 8px rgba(120, 0, 0, 0.25);
+}
+
+.form-group input:focus ~ .icon,
+.form-group select:focus ~ .icon {
+    color: var(--cor-vinho);
+}
+
+.form-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.1em;
     color: white;
-    border: 0;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--cor-vinho), #a12a2a);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #a12a2a, var(--cor-vinho));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}
+
+/* --- Links abaixo do formulário --- */
+.form-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1em;
+}
+
+.form-link a {
+    color: var(--cor-vinho);
     font-weight: bold;
-    border-radius: 15%;
-    padding: 5px 10px 5px 10px;
+    text-decoration: none;
 }
 
-.butaoSalvar{
-    background-color: #008000;
+.form-link a:hover {
+    text-decoration: underline;
+    color: var(--cor-dourada);
 }
 
-.butaoCancelar{
-    background-color: red;
+/* --- TABELA DE DADOS --- */
+.data-table-container {
+    margin-top: 40px;
 }
 
-.butaoEditar{
-    background-color: orange;
+.data-table-container h3 {
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--cor-preta-fundo);
 }
 
-.butaoExcluir{
-    background-color: blue;
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden; /* Garante que o border-radius seja aplicado nos cantos */
 }
 
-.butaoSalvar:hover{
-    background-color: greenyellow;
-    transition: all 0.5s;
+.data-table th,
+.data-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-.butaoCancelar:hover{
-    background-color: salmon;
-    transition: all 0.5s;
+.data-table thead {
+    background-color: var(--cor-preta-fundo);
+    color: var(--cor-dourada);
+    font-family: 'Cinzel Decorative', cursive;
 }
 
-.butaoEditar:hover{
-    background-color: red;
-    transition: all 0.5s;
+.data-table tbody tr:hover {
+    background-color: #f5f5f5;
 }
 
-.butaoExcluir:hover{
-    background-color: blueviolet;
-    transition: all 0.5s;
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.action-links a {
+    color: var(--cor-vinho);
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.action-links a:hover {
+    text-decoration: underline;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--cor-vinho);
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Fauna One', serif;
+    font-size: 1em;
+}
+.link-button:hover {
+    text-decoration: underline;
+}
+
+/* --- MENSAGENS DE STATUS --- */
+.status-message {
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.status-sucesso {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.status-erro {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+/* --- RODAPÉ --- */
+.main-footer {
+    background-color: var(--cor-preta-fundo);
+    color: var(--cor-texto-claro);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+    border-top: 5px solid var(--cor-vinho);
 }
