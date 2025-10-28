@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-         version="5.0">
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
 
     <servlet>
         <servlet-name>RelatorioControlador</servlet-name>
@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RelatorioControlador</servlet-name>
-        <url-pattern>/RelatorioControlador/*</url-pattern> 
+        <url-pattern>/RelatorioControlador/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -20,6 +20,15 @@
     <servlet-mapping>
         <servlet-name>BebidaControlador</servlet-name>
         <url-pattern>/BebidaControlador</url-pattern>
+        </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Bebida_por_vendaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.Bebida_por_vendaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Bebida_por_vendaControlador</servlet-name>
+        <url-pattern>/Bebida_por_vendaControlador</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -68,12 +77,30 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ItensVendaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.ItensVendaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItensVendaControlador</servlet-name>
+        <url-pattern>/ItensVendaControlador</url-pattern>
+    </servlet-mapping>
+
+     <servlet>
         <servlet-name>PizzaControlador</servlet-name>
         <servlet-class>com.mycompany.pizzariaweb.controlador.PizzaControlador</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PizzaControlador</servlet-name>
         <url-pattern>/PizzaControlador</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Pizza_por_vendaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.Pizza_por_vendaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Pizza_por_vendaControlador</servlet-name>
+        <url-pattern>/Pizza_por_vendaControlador</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -84,40 +111,21 @@
         <servlet-name>RecheioBordaControlador</servlet-name>
         <url-pattern>/RecheioBordaControlador</url-pattern>
     </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>LoginControlador</servlet-name>
-        <servlet-class>com.mycompany.pizzariaweb.controlador.LoginControlador</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoginControlador</servlet-name>
-        <url-pattern>/LoginControlador</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>UsuarioControlador</servlet-name>
-        <servlet-class>com.mycompany.pizzariaweb.controlador.UsuarioControlador</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UsuarioControlador</servlet-name>
-        <url-pattern>/UsuarioControlador</url-pattern>
-    </servlet-mapping>
 
-    <servlet>
-        <servlet-name>SenhaControlador</servlet-name>
-        <servlet-class>com.mycompany.pizzariaweb.controlador.SenhaControlador</servlet-class>
+     <servlet>
+        <servlet-name>VendaControlador</servlet-name>
+        <servlet-class>com.mycompany.pizzariaweb.controlador.VendaControlador</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SenhaControlador</servlet-name>
-        <url-pattern>/SenhaControlador</url-pattern>
+        <servlet-name>VendaControlador</servlet-name>
+        <url-pattern>/VendaControlador</url-pattern>
     </servlet-mapping>
 
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
-    
+
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
-    </welcome-file-list>
-    
+        <welcome-file>login.jsp</welcome-file> <welcome-file>index.jsp</welcome-file> <welcome-file>index.html</welcome-file> </welcome-file-list>
+
 </web-app>
